@@ -1,10 +1,8 @@
-import React from 'react';
-import Today from './Today'
+import React from "react";
+import Today from "./Today";
 
 const Home = ({ className }) => {
-    return (
-        <Today />
-    );
+  return <Today />;
 };
 
 export default Home;
