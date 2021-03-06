@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import getWeather from '../data/Apicall'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Switcher from '../components/Switcher';
+import moment from 'moment';
 
 const Today = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -21,6 +22,9 @@ const Today = () => {
     getData();
   }, []);
 
+ const formatteddate = moment(new Date).format('YYYY-MM-DD');
+ // console.log(formatteddate);
+
     return (
     	<>
     	<Switcher />
@@ -31,9 +35,22 @@ const Today = () => {
       	<h2>
       	{weatherData.name}
       	</h2>
-        <h3>
-          {weatherData.weather[0].main}
-        </h3>
+        <ul>
+          {weatherData.list.map((item)=>{
+          	if(item.dt_txt.includes(formatteddate) == true)
+          	return(
+          		<>
+          		<li key={item.dt}>
+          	{item.dt_txt}
+          	</li>
+          		<li key={item.dt + 1}>
+          	{item.weather[0].description}
+          	</li>
+          	</>
+          	)
+          	
+          })}
+        </ul>
         </>
         ) : null
     }

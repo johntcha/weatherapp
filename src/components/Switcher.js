@@ -1,10 +1,11 @@
 import React, {Link} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 
 const Switcher = () => {
     return (
         <div className="switcher">
-        <Link to="/"><button>Today</button> </Link>
-        <Link to="/week"><button>Week</button> </Link>
+        <Link to="/"><Button variant="contained">Today</Button> </Link>
+        <Link to="/week"><Button variant="contained">Week</Button> </Link>
         </div>
     );
 };
