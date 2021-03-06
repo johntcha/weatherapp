@@ -1,25 +1,55 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useState, useEffect} from 'react'
+import Today from './pages/Today';
+import Week from './pages/Week';
+import NotFound from './pages/NotFound';
+import getWeather from './data/Apicall'
+
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
+  const [weatherData, setWeatherData] = useState(null);
+  const [cityName, setCityName] = useState('paris');
+
+  const getData = async () => {
+    try{
+      const data = await getWeather(cityName);
+      setWeatherData(data);
+      console.log(data);
+    }catch(e) {
+      console.log(e.message);
+    }
+  }
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    <>
+    <Today
+    setCityName = {setCityName}
+    getData = {getData} />
+    <Week />
+    <NotFound />
+
+    {
+      weatherData !== null ? (
+        <div>
+          {weatherData.weather[0].main}
+        </div>) : null
+    }
+
+
+    <BrowserRouter>
+        <Switch>
+      <Route path="/" exact component={Today} />
+      <Route path="/week" component={Week} />
+      <Route component={NotFound} />
+    </Switch>
+    </BrowserRouter>
+    </>
+  )
+};
 
 export default App;
