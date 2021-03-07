@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
 import getWeather from "../data/Apicall";
+import CityPicker from './CityPicker';
 
 const WeatherInfo = () => {
   const [weatherData, setWeatherData] = useState(null);
@@ -18,7 +19,7 @@ const WeatherInfo = () => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [cityName]);
 
   const formatteddate = moment(new Date()).format("YYYY-MM-DD");
   // console.log(formatteddate);
@@ -26,6 +27,10 @@ const WeatherInfo = () => {
     <div className="">
       {weatherData !== null ? (
         <>
+          <CityPicker
+          cityName = {cityName}
+          setCityName = {setCityName}
+          />
           <h2>{cityName}</h2>
           <ul>
             {/*displays the first next day info
