@@ -6,8 +6,7 @@ const Today = () => {
   return (
     <>
       <Switcher />
-      <WeatherInfo
-      />
+      <WeatherInfo />
     </>
   );
 };

@@ -1,20 +1,20 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const Switcher = () => {
   return (
     <div className="switcher">
-        <NavLink to="/" exact activeClassName="navActive">
+      <NavLink to="/" exact activeClassName="navActive">
         <Button variant="contained" color="primary">
-        Today
+          Today
         </Button>
-        </NavLink>
-        <NavLink to="/week" activeClassName="navActive">
+      </NavLink>
+      <NavLink to="/week" activeClassName="navActive">
         <Button variant="contained" color="primary">
-        Week
+          Week
         </Button>
-        </NavLink>
+      </NavLink>
     </div>
   );
 };

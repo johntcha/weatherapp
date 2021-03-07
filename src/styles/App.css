@@ -2,7 +2,8 @@
 @import "Today.css";
 @import "Week.css";
 
-html, body {
+html,
+body {
   margin: 0 auto;
   min-width: 500px;
 }
@@ -10,12 +11,10 @@ html, body {
   text-align: center;
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-li{
- list-style: none;
+li {
+  list-style: none;
 }
-
-

@@ -1,3 +1,4 @@
-a.navActive>button, a.navActive>button:hover {
-    background: skyblue;
+a.navActive > button,
+a.navActive > button:hover {
+  background: skyblue;
 }

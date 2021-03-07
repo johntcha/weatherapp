@@ -1,8 +1,8 @@
 .week-weather-content {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
 }
 
-.week-weather-content>ul {
-    padding: 20px;
+.week-weather-content > ul {
+  padding: 20px;
 }

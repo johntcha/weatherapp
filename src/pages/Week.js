@@ -6,8 +6,7 @@ const Week = () => {
   return (
     <>
       <Switcher />
-      <WeatherInfo
-      />
+      <WeatherInfo />
     </>
   );
 };
