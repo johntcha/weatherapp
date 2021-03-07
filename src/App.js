@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/App.css";
 import Today from "./pages/Today";
 import Week from "./pages/Week";
 import NotFound from "./pages/NotFound";

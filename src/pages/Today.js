@@ -7,8 +7,7 @@ const Today = () => {
     <>
       <Switcher />
       <WeatherInfo
-      urlName = {"/"}
-      cond = {true} />
+      />
     </>
   );
 };

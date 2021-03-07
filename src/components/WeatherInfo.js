@@ -33,7 +33,6 @@ const WeatherInfo = (props) => {
   }
 
   const formatteddate = moment(new Date()).format("YYYY-MM-DD");
-  console.log();
   return (
     <div className="">
       {weatherData !== null ? (
@@ -44,7 +43,7 @@ const WeatherInfo = (props) => {
           capitalize = {capitalize}
           />
           <h2>{cityName}</h2>
-          <div>
+          <div className="today-weather-content">
 
             {/*displays the first next day info
               when the last info of the current day dissapear
@@ -58,13 +57,16 @@ const WeatherInfo = (props) => {
                   <li>{weatherData.list[0].dt_txt}</li>
                   <li>{Math.round(weatherData.list[0].main.temp - 273.15) + "°C"}</li>
                   <li>{weatherData.list[0].weather[0].description}</li>
+                  <img src={`http://openweathermap.org/img/wn/${weatherData.list[0].weather[0].icon}@2x.png`} alt={weatherData.list[0].weather[0].description} />
                 </ul>
                 </>
               )}
-
+              </div>
+              <div className="today-weather-content">
             {weatherData.list.map((item) => {
               const tempDegree = Math.round(item.main.temp - 273.15) + "°C";
               const dayName = capitalize(getDayName(item.dt_txt, 'en-US'));
+              const iconNum = item.weather[0].icon;
               if (
                 window.location.pathname === "/" &&
                 item.dt_txt.includes(formatteddate) === true
@@ -76,14 +78,17 @@ const WeatherInfo = (props) => {
                     <li>{item.dt_txt}</li>
                     <li>{tempDegree}</li>
                     <li>{item.weather[0].description}</li>
+                    <img src={`http://openweathermap.org/img/wn/${iconNum}@2x.png`} alt={item.weather[0].description} />
                   </ul>
                   </>
                 );
             })}
-
+            </div>
+            <div className="week-weather-content">
             {weatherData.list.map((item) => {
               const tempDegree = Math.round(item.main.temp - 273.15) + "°C";
               const dayName = capitalize(getDayName(item.dt_txt, 'en-US'));
+              const iconNum = item.weather[0].icon;
               if (
                 window.location.pathname === "/week" &&
                 item.dt_txt.includes(formatteddate) === false
@@ -95,6 +100,7 @@ const WeatherInfo = (props) => {
                     <li>{item.dt_txt}</li>
                     <li>{tempDegree}</li>
                     <li>{item.weather[0].description}</li>
+                    <img src={`http://openweathermap.org/img/wn/${iconNum}@2x.png`} alt={item.weather[0].description} />
                   </ul>
                   </>
                 );

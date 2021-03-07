@@ -7,8 +7,6 @@ const Week = () => {
     <>
       <Switcher />
       <WeatherInfo
-      urlName = {"/week"}
-      cond = {false}
       />
     </>
   );
