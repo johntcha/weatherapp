@@ -1,4 +1,11 @@
+h1 {
+  margin-top: 0;
+}
 a.navActive > button,
 a.navActive > button:hover {
   background: skyblue;
+}
+
+.switcher {
+  background: black;
 }

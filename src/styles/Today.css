@@ -1,3 +1,51 @@
-.today-weather-content {
+.weather-content-today {
+  height: 100vh;
+}
+
+.today-weather-card {
   display: inline-flex;
+}
+.today-details-card {
+  display: flex;
+}
+
+.today-weather-card > ul,
+.today-details-card > ul {
+  padding: 20px;
+  margin-left: 5px;
+  border: 1px solid;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.Clear,
+.Thunderstorm,
+.Drizzle,
+.Rain,
+.Snow,
+.Mist,
+.Clouds {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Clear {
+  background-image: url("../media/clear-sky.jpg");
+}
+.Thunderstorm {
+  background-image: url("../media/thunderstorm.jpg");
+}
+.Drizzle {
+  background-image: url("../media/drizzle.jpg");
+}
+.Rain {
+  background-image: url("../media/rain.jpg");
+}
+.Snow {
+  background-image: url("../media/snow.jpg");
+}
+.Mist {
+  background-image: url("../media/mist.jpg");
+}
+.Clouds {
+  background-image: url("../media/clouds.jpg");
 }

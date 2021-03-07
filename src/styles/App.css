@@ -4,8 +4,10 @@
 
 html,
 body {
-  margin: 0 auto;
+  margin: 0;
   min-width: 500px;
+  color: white;
+  font-family: "Abel", sans-serif;
 }
 #root {
   text-align: center;
@@ -17,4 +19,9 @@ a {
 
 li {
   list-style: none;
+}
+
+.weather-content-today,
+.weather-content-week {
+  padding: 0 20px;
 }

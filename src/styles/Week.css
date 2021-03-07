@@ -1,8 +1,15 @@
-.week-weather-content {
+.week-weather-card {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
 }
 
-.week-weather-content > ul {
+.week-weather-card > ul {
   padding: 20px;
+  margin-left: 5px;
+  border: 1px solid;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.weather-content-week {
+  background: lightblue;
 }

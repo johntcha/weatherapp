@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 const Switcher = () => {
   return (
     <div className="switcher">
+      <h1>Weather App</h1>
       <NavLink to="/" exact activeClassName="navActive">
         <Button variant="contained" color="primary">
           Today
