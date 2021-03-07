@@ -3,7 +3,7 @@ import moment from "moment";
 import getWeather from "../data/Apicall";
 import CityPicker from './CityPicker';
 
-const WeatherInfo = () => {
+const WeatherInfo = (props) => {
   const [weatherData, setWeatherData] = useState(null);
   const [cityName, setCityName] = useState("Paris");
 
@@ -21,8 +21,19 @@ const WeatherInfo = () => {
     getData();
   }, [cityName]);
 
+  const getDayName = (dateStr, locale) =>
+  {
+    var date = new Date(dateStr);
+    return date.toLocaleDateString(locale, { weekday: 'long' });        
+  }
+
+  const capitalize = (word) => {
+  if (typeof word !== 'string') return ''
+  return word.charAt(0).toUpperCase() + word.slice(1)
+  }
+
   const formatteddate = moment(new Date()).format("YYYY-MM-DD");
-  // console.log(formatteddate);
+  console.log();
   return (
     <div className="">
       {weatherData !== null ? (
@@ -30,46 +41,65 @@ const WeatherInfo = () => {
           <CityPicker
           cityName = {cityName}
           setCityName = {setCityName}
+          capitalize = {capitalize}
           />
           <h2>{cityName}</h2>
-          <ul>
+          <div>
+
             {/*displays the first next day info
-          when the last info of the current day dissapear
-          around 10AM*/}
+              when the last info of the current day dissapear
+              around 10PM*/}
+
             {window.location.pathname === "/" &&
               weatherData.list[0].dt_txt.includes(formatteddate) === false && (
                 <>
+                <ul>
+                  <li>{getDayName(weatherData.list[0].dt_txt, 'en-US')}</li>
                   <li>{weatherData.list[0].dt_txt}</li>
+                  <li>{Math.round(weatherData.list[0].main.temp - 273.15) + "°C"}</li>
                   <li>{weatherData.list[0].weather[0].description}</li>
+                </ul>
                 </>
               )}
 
             {weatherData.list.map((item) => {
+              const tempDegree = Math.round(item.main.temp - 273.15) + "°C";
+              const dayName = capitalize(getDayName(item.dt_txt, 'en-US'));
               if (
                 window.location.pathname === "/" &&
                 item.dt_txt.includes(formatteddate) === true
               )
                 return (
                   <>
-                    <li key={item.dt}>{item.dt_txt}</li>
-                    <li key={item.dt + 1}>{item.weather[0].description}</li>
+                  <ul>
+                    <li key={item.dt + item}>{dayName}</li>
+                    <li>{item.dt_txt}</li>
+                    <li>{tempDegree}</li>
+                    <li>{item.weather[0].description}</li>
+                  </ul>
                   </>
                 );
             })}
 
             {weatherData.list.map((item) => {
+              const tempDegree = Math.round(item.main.temp - 273.15) + "°C";
+              const dayName = capitalize(getDayName(item.dt_txt, 'en-US'));
               if (
                 window.location.pathname === "/week" &&
                 item.dt_txt.includes(formatteddate) === false
               )
                 return (
                   <>
-                    <li key={item.dt}>{item.dt_txt}</li>
-                    <li key={item.dt + 1}>{item.weather[0].description}</li>
+                  <ul>
+                    <li key={item.dt}>{dayName}</li>
+                    <li>{item.dt_txt}</li>
+                    <li>{tempDegree}</li>
+                    <li>{item.weather[0].description}</li>
+                  </ul>
                   </>
                 );
             })}
-          </ul>
+            </div>
         </>
       ) : null}
     </div>

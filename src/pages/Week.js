@@ -6,7 +6,10 @@ const Week = () => {
   return (
     <>
       <Switcher />
-      <WeatherInfo />
+      <WeatherInfo
+      urlName = {"/week"}
+      cond = {false}
+      />
     </>
   );
 };
