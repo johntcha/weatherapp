@@ -4,8 +4,8 @@
 
 html,
 body {
-  margin: 0;
-  min-width: 500px;
+  max-width: 100%;
+  overflow-x: hidden;
   color: white;
   font-family: "Abel", sans-serif;
 }
@@ -15,6 +15,19 @@ body {
 h2 {
     font-size: 3em;
     margin-bottom: 0;
+    margin-top: 0;
+}
+
+label{
+  font-size: 1.2em;
+}
+
+input{
+  margin: 0 5px;
+  height: 25px;
+  color: white;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -42,7 +55,8 @@ li {
 }
 
 .weather-content{
-  padding: 0 20px;
+  padding: 20px 20px 0 20px;
+  padding-top: 20px;
   height: 100vh;
 }
 
@@ -77,4 +91,29 @@ li {
 }
 .Clouds {
   background-image: url("../media/clouds.jpg");
+}
+
+@media screen and (max-width: 975px) and (min-width: 626px){
+  .today-weather-card, .week-weather-card{
+    width: 37em;
+  }
+  .today-details-card {
+    display: inline-flex;
+  }
+}
+
+@media screen and (max-width: 625px) and (min-width: 467px){
+  .today-weather-card, .week-weather-card{
+    width: 27em;
+  }
+  .today-details-card {
+    display: inline-flex;
+  }
+  
+}
+
+@media screen and (max-width: 465px){
+  .today-weather-card, .week-weather-card {
+      width: 18em;
+  }
 }

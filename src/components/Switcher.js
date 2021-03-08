@@ -6,6 +6,7 @@ const Switcher = () => {
   return (
     <div className="switcher">
       <h1>Weather App</h1>
+      <div className="navigation">
       <NavLink to="/" exact activeClassName="navActive">
         <Button variant="contained" color="primary">
           Today
@@ -16,6 +17,7 @@ const Switcher = () => {
           Week
         </Button>
       </NavLink>
+      </div>
     </div>
   );
 };

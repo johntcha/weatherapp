@@ -14,7 +14,7 @@ const CityPicker = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <label>
-        City:
+        City :
         <input
           type="text"
           value={props.capitalize(value)}

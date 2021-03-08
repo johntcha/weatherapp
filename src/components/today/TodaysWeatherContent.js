@@ -5,11 +5,14 @@ const TodaysWeatherContent = (props) => {
   const getList0 = props.weatherData.hourly[0];
   const rightDateFormat = moment(props.convertIntoDate(getList0.dt)).format('L');
   const feelsLike = Math.round(getList0.feels_like - 273.15) + "°C";
+  const currentDate = moment(new Date()).format('LT');
+  
   return (
     <>
       <div className="today-details-card">
       <ul>
           <li>{rightDateFormat}</li>
+          <li>{currentDate}</li>
           <li>Feels like {feelsLike}</li>
         </ul>
         <ul>
