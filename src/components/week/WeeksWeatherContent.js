@@ -10,22 +10,24 @@ const WeeksWeatherContent = (props) => {
           props.getDayName(props.convertIntoDate(item.dt), "en-US")
         );
         const iconNum = item.weather[0].icon;
-        const rightDateFormat = moment(props.convertIntoDate(item.dt)).format('L');
+        const rightDateFormat = moment(props.convertIntoDate(item.dt)).format(
+          "L"
+        );
 
-          return (
-            <>
-              <ul>
-                <li key={item.dt}>{dayName}</li>
-                <li>{rightDateFormat}</li>
-                <li>{tempDegree}</li>
-                <li>{item.weather[0].description}</li>
-                <img
-                  src={`http://openweathermap.org/img/wn/${iconNum}@2x.png`}
-                  alt={item.weather[0].description}
-                />
-              </ul>
-            </>
-          );
+        return (
+          <>
+            <ul>
+              <li key={item.dt}>{dayName}</li>
+              <li>{rightDateFormat}</li>
+              <li>{tempDegree}</li>
+              <li>{item.weather[0].description}</li>
+              <img
+                src={`http://openweathermap.org/img/wn/${iconNum}@2x.png`}
+                alt={item.weather[0].description}
+              />
+            </ul>
+          </>
+        );
       })}
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import {getWeather, getLoc} from "../data/Apicall";
+import { getWeather, getLoc } from "../data/Apicall";
 import CityPicker from "./CityPicker";
 import TodaysWeatherContent from "./today/TodaysWeatherContent";
 import WeeksWeatherContent from "./week/WeeksWeatherContent";
@@ -10,28 +10,26 @@ const WeatherInfo = (props) => {
   const [cityName, setCityName] = useState("Paris");
   // const [lat, setLat] = useState('48.8534');
   // const [lon, setLon] = useState('2.3488');
-  const [coord, setCoord] = useState({lat : '48.8534',lon : '2.3488'});
+  const [coord, setCoord] = useState({ lat: "48.8534", lon: "2.3488" });
   const [bgCss, setBgCss] = useState([]);
-
-  
 
   useEffect(() => {
     const getData = async () => {
-    try {
-      const dataLoc = await getLoc(cityName);
-      
-      setCoord({lat : dataLoc[0].lat, lon : dataLoc[0].lon});
-      const weatherData = await getWeather(coord.lat, coord.lon);
-      // setLat(dataLoc[0].lat);
-      // setLon(dataLoc[0].lon);
-      setWeatherData(weatherData);
-      
-      setBgCss(weatherData.hourly[0].weather[0].main);
-      console.log(weatherData);
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
+      try {
+        const dataLoc = await getLoc(cityName);
+
+        setCoord({ lat: dataLoc[0].lat, lon: dataLoc[0].lon });
+        const weatherData = await getWeather(coord.lat, coord.lon);
+        // setLat(dataLoc[0].lat);
+        // setLon(dataLoc[0].lon);
+        setWeatherData(weatherData);
+
+        setBgCss(weatherData.hourly[0].weather[0].main);
+        console.log(weatherData);
+      } catch (e) {
+        console.log(e.message);
+      }
+    };
     getData();
   }, [cityName, JSON.stringify(coord)]);
 
@@ -39,8 +37,7 @@ const WeatherInfo = (props) => {
     let d = new Date(timestamp * 1000);
     let n = d.toString();
     return n;
-
-  }
+  };
   const getDayName = (dateStr, locale) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString(locale, { weekday: "long" });
@@ -55,33 +52,31 @@ const WeatherInfo = (props) => {
   // console.log(formatteddate);
   return (
     <div className={`weather-content ${bgCss}`}>
-    <CityPicker
-            cityName={cityName}
-            setCityName={setCityName}
-            capitalize={capitalize}
-          />
-          <h2>{cityName}</h2>
-    {weatherData !== null && window.location.pathname === "/" ? (
-          <TodaysWeatherContent
-            weatherData={weatherData}
-            capitalize={capitalize}
-            date={formatteddate}
-            convertIntoDate = {convertIntoDate}
-            getDayName={getDayName}
-          />
-        
+      <CityPicker
+        cityName={cityName}
+        setCityName={setCityName}
+        capitalize={capitalize}
+      />
+      <h2>{cityName}</h2>
+      {weatherData !== null && window.location.pathname === "/" ? (
+        <TodaysWeatherContent
+          weatherData={weatherData}
+          capitalize={capitalize}
+          date={formatteddate}
+          convertIntoDate={convertIntoDate}
+          getDayName={getDayName}
+        />
       ) : null}
       {weatherData !== null && window.location.pathname === "/week" ? (
-          <WeeksWeatherContent
-            weatherData={weatherData}
-            capitalize={capitalize}
-            date={formatteddate}
-            convertIntoDate ={convertIntoDate}
-            getDayName={getDayName}
-          />
-        
+        <WeeksWeatherContent
+          weatherData={weatherData}
+          capitalize={capitalize}
+          date={formatteddate}
+          convertIntoDate={convertIntoDate}
+          getDayName={getDayName}
+        />
       ) : null}
-      </div>
+    </div>
   );
 };
 

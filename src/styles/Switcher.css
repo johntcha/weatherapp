@@ -4,18 +4,18 @@ h1 {
 }
 
 .navigation {
-    padding-bottom: 10px;
+  padding-bottom: 10px;
 }
 
 a.navActive > button,
 a.navActive > button:hover {
-  background: darkgray!important;
+  background: darkgray !important;
 }
 
 .MuiButton-containedPrimary {
-	font-size: 1.2em!important;
-    background-color: darkkhaki!important;
-    font-family: "Abel", sans-serif!important;
+  font-size: 1.2em !important;
+  background-color: darkkhaki !important;
+  font-family: "Abel", sans-serif !important;
 }
 
 .switcher {

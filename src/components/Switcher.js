@@ -7,16 +7,16 @@ const Switcher = () => {
     <div className="switcher">
       <h1>Weather App</h1>
       <div className="navigation">
-      <NavLink to="/" exact activeClassName="navActive">
-        <Button variant="contained" color="primary">
-          Today
-        </Button>
-      </NavLink>
-      <NavLink to="/week" activeClassName="navActive">
-        <Button variant="contained" color="primary">
-          Week
-        </Button>
-      </NavLink>
+        <NavLink to="/" exact activeClassName="navActive">
+          <Button variant="contained" color="primary">
+            Today
+          </Button>
+        </NavLink>
+        <NavLink to="/week" activeClassName="navActive">
+          <Button variant="contained" color="primary">
+            Week
+          </Button>
+        </NavLink>
       </div>
     </div>
   );

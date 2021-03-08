@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# ReactJS Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was done with ReactJS and [OpenWeather API](https://openweathermap.org/).
 
-## Available Scripts
+## Context
 
-In the project directory, you can run:
+Done at the beginning of my internship at Capgemini in order to apply ReactJS knowledge.
 
-### `npm start`
+## Modules
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Modules used in this project are:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### `momentjs` 
 
-### `npm test`
+Used in order to simplify date format conversion
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `material UI` 
 
-### `npm run build`
+Used for the Buttons
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Principle
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The web app has 3 pages : Today's weather, Week's weather and Not found.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Path between these pages are managed by React Router.
 
-### `npm run eject`
+### Fetch the API data
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Getting the right data is divided in two parts.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The first data I am fetching are the geographic coordinates (lat, lon) of a city with this endpoint : `http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Once geographic coordinates acquired, the program implement them in another endpoint (`https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}`), in which I can get the weather data of the day and of the week.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Country Picker
 
-## Learn More
+In order to choose a city, I needed a form to enter a city name. Thanks to the Open Weather API, country can be found whether the language used.
+The function fetching the data will receive the city name and will implement it in the API endpoint in order to repeat the process written above.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Switcher
 
-### Code Splitting
+The switcher part allow the visitor to navigate between today and this week weather.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Background Weather
 
-### Analyzing the Bundle Size
+The background changes according to the current weather. 
+I just fetched the weather result and implement into a className and added a background image for (almost) each of them.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Test with Jest
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+In process....

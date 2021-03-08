@@ -13,16 +13,16 @@ body {
   text-align: center;
 }
 h2 {
-    font-size: 3em;
-    margin-bottom: 0;
-    margin-top: 0;
+  font-size: 3em;
+  margin-bottom: 0;
+  margin-top: 0;
 }
 
-label{
+label {
   font-size: 1.2em;
 }
 
-input{
+input {
   margin: 0 5px;
   height: 25px;
   color: white;
@@ -35,7 +35,7 @@ input{
 }
 ::-webkit-scrollbar-track {
   background-color: black;
-  border-radius: 10px; 
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -43,7 +43,7 @@ input{
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
 
 a {
@@ -54,7 +54,7 @@ li {
   list-style: none;
 }
 
-.weather-content{
+.weather-content {
   padding: 20px 20px 0 20px;
   padding-top: 20px;
   height: 100vh;
@@ -93,8 +93,9 @@ li {
   background-image: url("../media/clouds.jpg");
 }
 
-@media screen and (max-width: 975px) and (min-width: 626px){
-  .today-weather-card, .week-weather-card{
+@media screen and (max-width: 975px) and (min-width: 626px) {
+  .today-weather-card,
+  .week-weather-card {
     width: 37em;
   }
   .today-details-card {
@@ -102,18 +103,19 @@ li {
   }
 }
 
-@media screen and (max-width: 625px) and (min-width: 467px){
-  .today-weather-card, .week-weather-card{
+@media screen and (max-width: 625px) and (min-width: 467px) {
+  .today-weather-card,
+  .week-weather-card {
     width: 27em;
   }
   .today-details-card {
     display: inline-flex;
   }
-  
 }
 
-@media screen and (max-width: 465px){
-  .today-weather-card, .week-weather-card {
-      width: 18em;
+@media screen and (max-width: 465px) {
+  .today-weather-card,
+  .week-weather-card {
+    width: 18em;
   }
 }
