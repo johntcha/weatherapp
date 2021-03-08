@@ -2,6 +2,9 @@
 
 This project was done with ReactJS and [OpenWeather API](https://openweathermap.org/).
 
+![alt text](https://github.com/johntcha/weatherapp/blob/main/public/weatherapp.PNG?raw=true)
+
+
 ## Context
 
 Done at the beginning of my internship at Capgemini in order to apply ReactJS knowledge.
