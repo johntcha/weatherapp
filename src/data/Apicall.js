@@ -1,14 +1,15 @@
 import axios from "axios";
 
 const api = {
-  url: "http://api.openweathermap.org/data/2.5/forecast?",
+  urlCity : "http://api.openweathermap.org/geo/1.0/direct?",
+  urlLoc: "https://api.openweathermap.org/data/2.5/onecall?",
   key: "8aa27bfce3724b30676b40aff500135b",
 };
 
-const getWeather = async (cityName) => {
+export const getLoc = async (cityName) => {
   try {
     const { data } = await axios.get(
-      api.url + `q=${cityName}&appid=${api.key}`
+      api.urlCity + `q=${cityName}&appid=${api.key}`
     );
     return data;
   } catch (e) {
@@ -16,4 +17,13 @@ const getWeather = async (cityName) => {
   }
 };
 
-export default getWeather;
+export const getWeather = async (lat, lon ) => {
+  try {
+    const { data } = await axios.get(
+      api.urlLoc + `lat=${lat}&lon=${lon}&appid=${api.key}`
+      );
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};

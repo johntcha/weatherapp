@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import getWeather from "../data/Apicall";
+import {getWeather, getLoc} from "../data/Apicall";
 import CityPicker from "./CityPicker";
 import TodaysWeatherContent from "./today/TodaysWeatherContent";
 import WeeksWeatherContent from "./week/WeeksWeatherContent";
@@ -8,16 +8,22 @@ import WeeksWeatherContent from "./week/WeeksWeatherContent";
 const WeatherInfo = (props) => {
   const [weatherData, setWeatherData] = useState(null);
   const [cityName, setCityName] = useState("Paris");
+  const [lat, setLat] = useState('48.856614');
+  const [lon, setLon] = useState('2.3522219');
   const [bgCss, setBgCss] = useState();
 
   const getData = async () => {
     try {
-      const data = await getWeather(cityName);
-      const bgCssProperty = await getWeather(cityName);
-
-      setWeatherData(data);
-      setBgCss(bgCssProperty.list[0].weather[0].main);
-      console.log(data);
+      const dataLoc = await getLoc(cityName);
+      // const latCity = await getLoc(cityName);
+      // const lonCity = await getLoc(cityName);
+      // const bgCssProperty = await getLoc(cityName);
+      const weatherData = await getWeather(lat, lon);
+      setLat(dataLoc[0].lat);
+      setLon(dataLoc[0].lon);
+      setWeatherData(weatherData);
+      setBgCss(weatherData.hourly[0].weather[0].main);
+      console.log(weatherData);
     } catch (e) {
       console.log(e.message);
     }
@@ -25,8 +31,14 @@ const WeatherInfo = (props) => {
 
   useEffect(() => {
     getData();
-  }, [cityName]);
+  }, [cityName, lat]);
 
+  const convertIntoDate = (timestamp) => {
+    let d = new Date(timestamp * 1000);
+    let n = d.toString();
+    return n;
+
+  }
   const getDayName = (dateStr, locale) => {
     const date = new Date(dateStr);
     return date.toLocaleDateString(locale, { weekday: "long" });
@@ -37,10 +49,11 @@ const WeatherInfo = (props) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
-  const formatteddate = moment(new Date()).format("YYYY-MM-DD");
+  const formatteddate = moment(new Date()).format("ddd MMM DD YYYY");
+  // console.log(formatteddate);
   return (
     <>
-      {weatherData !== null && window.location.pathname === "/" ? (
+    {weatherData !== null && window.location.pathname === "/" ? (
         <div className={`weather-content-today ${bgCss}`}>
           <CityPicker
             cityName={cityName}
@@ -53,6 +66,7 @@ const WeatherInfo = (props) => {
             weatherData={weatherData}
             capitalize={capitalize}
             date={formatteddate}
+            convertIntoDate = {convertIntoDate}
             getDayName={getDayName}
           />
         </div>
@@ -69,10 +83,12 @@ const WeatherInfo = (props) => {
             weatherData={weatherData}
             capitalize={capitalize}
             date={formatteddate}
+            convertIntoDate ={convertIntoDate}
             getDayName={getDayName}
           />
         </div>
       ) : null}
+      
     </>
   );
 };

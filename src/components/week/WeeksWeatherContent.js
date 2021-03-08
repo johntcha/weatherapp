@@ -1,20 +1,22 @@
 import React from "react";
+import moment from "moment";
 
 const WeeksWeatherContent = (props) => {
   return (
     <div className="week-weather-card">
-      {props.weatherData.list.map((item) => {
-        const tempDegree = Math.round(item.main.temp - 273.15) + "°C";
+      {props.weatherData.daily.map((item) => {
+        const tempDegree = Math.round(item.temp - 273.15) + "°C";
         const dayName = props.capitalize(
-          props.getDayName(item.dt_txt, "en-US")
+          props.getDayName(item.dt, "en-US")
         );
         const iconNum = item.weather[0].icon;
-        if (item.dt_txt.includes(props.date) === false)
+        const rightDateFormat = moment(props.convertIntoDate(item.dt)).format('L');
+
           return (
             <>
               <ul>
                 <li key={item.dt}>{dayName}</li>
-                <li>{item.dt_txt}</li>
+                <li>{rightDateFormat}</li>
                 <li>{tempDegree}</li>
                 <li>{item.weather[0].description}</li>
                 <img
