@@ -3,7 +3,7 @@ import axios from "axios";
 const api = {
   urlCity : "http://api.openweathermap.org/geo/1.0/direct?",
   urlLoc: "https://api.openweathermap.org/data/2.5/onecall?",
-  key: "8aa27bfce3724b30676b40aff500135b",
+  key: "7631b01852113e5fda798e015b140736",
 };
 
 export const getLoc = async (cityName) => {

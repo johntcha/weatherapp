@@ -1,9 +1,8 @@
-.weather-content-today {
-  height: 100vh;
-}
-
 .today-weather-card {
   display: inline-flex;
+  width: 65em;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 .today-details-card {
   display: flex;
@@ -17,35 +16,4 @@
   background-color: rgba(0, 0, 0, 0.75);
 }
 
-.Clear,
-.Thunderstorm,
-.Drizzle,
-.Rain,
-.Snow,
-.Mist,
-.Clouds {
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
-.Clear {
-  background-image: url("../media/clear-sky.jpg");
-}
-.Thunderstorm {
-  background-image: url("../media/thunderstorm.jpg");
-}
-.Drizzle {
-  background-image: url("../media/drizzle.jpg");
-}
-.Rain {
-  background-image: url("../media/rain.jpg");
-}
-.Snow {
-  background-image: url("../media/snow.jpg");
-}
-.Mist {
-  background-image: url("../media/mist.jpg");
-}
-.Clouds {
-  background-image: url("../media/clouds.jpg");
-}

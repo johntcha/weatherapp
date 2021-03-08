@@ -1,24 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import moment from "moment";
 
 const TodaysWeatherContent = (props) => {
-  const getList0 = props.weatherData;
+  const getList0 = props.weatherData.hourly[0];
+  const rightDateFormat = moment(props.convertIntoDate(getList0.dt)).format('L');
+  const feelsLike = Math.round(getList0.feels_like - 273.15) + "°C";
   return (
     <>
       <div className="today-details-card">
+      <ul>
+          <li>{rightDateFormat}</li>
+          <li>Feels like {feelsLike}</li>
+        </ul>
         <ul>
           <li>Humidity</li>
           <li>
-            <i className="fas fa-tint"></i> {getList0.hourly[0].humidity + "%"}
+            <i className="fas fa-tint"></i> {getList0.humidity + "%"}
           </li>
         </ul>
         <ul>
           <li>Wind</li>
           <li>
-            <i className="far fa-compass"></i> {getList0.hourly[0].wind_deg+ "°"}
+            <i className="far fa-compass"></i> {getList0.wind_deg+ "°"}
           </li>
           <li>
-            <i className="fas fa-wind"></i> {getList0.hourly[0].wind_speed + " m/s"}
+            <i className="fas fa-wind"></i> {getList0.wind_speed + " m/s"}
           </li>
         </ul>
       </div>
@@ -27,10 +33,11 @@ const TodaysWeatherContent = (props) => {
         {props.weatherData.hourly.map((item) => {
           const tempDegree = Math.round(item.temp - 273.15) + "°C";
           const dayName = props.capitalize(
-            props.getDayName(item.dt, "en-US")
+            props.getDayName(
+props.convertIntoDate(item.dt), "en-US")
           );
           const iconNum = item.weather[0].icon;
-          const rightDateFormat = moment(props.convertIntoDate(item.dt)).format('L');
+          const hour = moment(props.convertIntoDate(item.dt)).format('LT');
           
           if (
             window.location.pathname === "/" &&
@@ -40,7 +47,7 @@ const TodaysWeatherContent = (props) => {
               <>
                 <ul>
                   <li key={item.dt + item}>{dayName}</li>
-                  <li>{rightDateFormat}</li>
+                  <li>{hour}</li>
                   <li>{tempDegree}</li>
                   <li>{item.weather[0].description}</li>
                   <img

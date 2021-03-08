@@ -8,30 +8,32 @@ import WeeksWeatherContent from "./week/WeeksWeatherContent";
 const WeatherInfo = (props) => {
   const [weatherData, setWeatherData] = useState(null);
   const [cityName, setCityName] = useState("Paris");
-  const [lat, setLat] = useState('48.856614');
-  const [lon, setLon] = useState('2.3522219');
-  const [bgCss, setBgCss] = useState();
+  // const [lat, setLat] = useState('48.8534');
+  // const [lon, setLon] = useState('2.3488');
+  const [coord, setCoord] = useState({lat : '48.8534',lon : '2.3488'});
+  const [bgCss, setBgCss] = useState([]);
 
-  const getData = async () => {
+  
+
+  useEffect(() => {
+    const getData = async () => {
     try {
       const dataLoc = await getLoc(cityName);
-      // const latCity = await getLoc(cityName);
-      // const lonCity = await getLoc(cityName);
-      // const bgCssProperty = await getLoc(cityName);
-      const weatherData = await getWeather(lat, lon);
-      setLat(dataLoc[0].lat);
-      setLon(dataLoc[0].lon);
+      
+      setCoord({lat : dataLoc[0].lat, lon : dataLoc[0].lon});
+      const weatherData = await getWeather(coord.lat, coord.lon);
+      // setLat(dataLoc[0].lat);
+      // setLon(dataLoc[0].lon);
       setWeatherData(weatherData);
+      
       setBgCss(weatherData.hourly[0].weather[0].main);
       console.log(weatherData);
     } catch (e) {
       console.log(e.message);
     }
   };
-
-  useEffect(() => {
     getData();
-  }, [cityName, lat]);
+  }, [cityName, JSON.stringify(coord)]);
 
   const convertIntoDate = (timestamp) => {
     let d = new Date(timestamp * 1000);
@@ -52,16 +54,14 @@ const WeatherInfo = (props) => {
   const formatteddate = moment(new Date()).format("ddd MMM DD YYYY");
   // console.log(formatteddate);
   return (
-    <>
-    {weatherData !== null && window.location.pathname === "/" ? (
-        <div className={`weather-content-today ${bgCss}`}>
-          <CityPicker
+    <div className={`weather-content ${bgCss}`}>
+    <CityPicker
             cityName={cityName}
             setCityName={setCityName}
             capitalize={capitalize}
           />
           <h2>{cityName}</h2>
-
+    {weatherData !== null && window.location.pathname === "/" ? (
           <TodaysWeatherContent
             weatherData={weatherData}
             capitalize={capitalize}
@@ -69,16 +69,9 @@ const WeatherInfo = (props) => {
             convertIntoDate = {convertIntoDate}
             getDayName={getDayName}
           />
-        </div>
+        
       ) : null}
       {weatherData !== null && window.location.pathname === "/week" ? (
-        <div className="weather-content-week">
-          <CityPicker
-            cityName={cityName}
-            setCityName={setCityName}
-            capitalize={capitalize}
-          />
-          <h2>{cityName}</h2>
           <WeeksWeatherContent
             weatherData={weatherData}
             capitalize={capitalize}
@@ -86,10 +79,9 @@ const WeatherInfo = (props) => {
             convertIntoDate ={convertIntoDate}
             getDayName={getDayName}
           />
-        </div>
+        
       ) : null}
-      
-    </>
+      </div>
   );
 };
 

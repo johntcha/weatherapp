@@ -12,6 +12,26 @@ body {
 #root {
   text-align: center;
 }
+h2 {
+    font-size: 3em;
+    margin-bottom: 0;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background-color: black;
+  border-radius: 10px; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
 
 a {
   text-decoration: none;
@@ -21,7 +41,40 @@ li {
   list-style: none;
 }
 
-.weather-content-today,
-.weather-content-week {
+.weather-content{
   padding: 0 20px;
+  height: 100vh;
+}
+
+.Clear,
+.Thunderstorm,
+.Drizzle,
+.Rain,
+.Snow,
+.Mist,
+.Clouds {
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Clear {
+  background-image: url("../media/clear-sky.jpg");
+}
+.Thunderstorm {
+  background-image: url("../media/thunderstorm.jpg");
+}
+.Drizzle {
+  background-image: url("../media/drizzle.jpg");
+}
+.Rain {
+  background-image: url("../media/rain.jpg");
+}
+.Snow {
+  background-image: url("../media/snow.jpg");
+}
+.Mist {
+  background-image: url("../media/mist.jpg");
+}
+.Clouds {
+  background-image: url("../media/clouds.jpg");
 }

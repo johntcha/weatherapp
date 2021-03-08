@@ -5,9 +5,9 @@ const WeeksWeatherContent = (props) => {
   return (
     <div className="week-weather-card">
       {props.weatherData.daily.map((item) => {
-        const tempDegree = Math.round(item.temp - 273.15) + "°C";
+        const tempDegree = Math.round(item.temp.day - 273.15) + "°C";
         const dayName = props.capitalize(
-          props.getDayName(item.dt, "en-US")
+          props.getDayName(props.convertIntoDate(item.dt), "en-US")
         );
         const iconNum = item.weather[0].icon;
         const rightDateFormat = moment(props.convertIntoDate(item.dt)).format('L');

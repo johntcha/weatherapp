@@ -1,6 +1,8 @@
 .week-weather-card {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  display: inline-flex;
+  display: inline-flex;
+  width: 65em;
+  overflow-x: auto;
 }
 
 .week-weather-card > ul {
