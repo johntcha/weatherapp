@@ -7,7 +7,7 @@ This project was done with ReactJS and [OpenWeather API](https://openweathermap.
 
 ## Context
 
-Done at the beginning of my internship at Capgemini in order to apply ReactJS knowledge.
+Done at the beginning of my internship at Capgemini in order to apply ReactJS knowledges.
 
 ## Modules
 
