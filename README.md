@@ -13,6 +13,10 @@ Done at the beginning of my internship at Capgemini in order to apply ReactJS kn
 
 Modules used in this project are:
 
+### `axios` 
+
+Used in order to fetch API data
+
 ### `momentjs` 
 
 Used in order to simplify date format conversion
