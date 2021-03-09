@@ -15,7 +15,7 @@ const Switcher = () => {
         </NavLink>
         <NavLink to="/week" 
         activeClassName="navActive"
-        data-testid="navigate-test">
+        >
           <Button variant="contained" color="primary">
             Week
           </Button>

@@ -7,14 +7,14 @@ const TodaysWeatherContent = (props) => {
     "L"
   );
   const feelsLike = Math.round(getList0.feels_like - 273.15) + "°C";
-  const currentDate = moment(new Date()).format("LT");
+  const currentTime = moment(new Date()).format("LT");
 
   return (
     <>
       <div className="today-details-card">
         <ul>
-          <li>{rightDateFormat}</li>
-          <li>{currentDate}</li>
+          <li data-testid="today">{rightDateFormat}</li>
+          <li>{currentTime}</li>
           <li>Feels like {feelsLike}</li>
         </ul>
         <ul>
