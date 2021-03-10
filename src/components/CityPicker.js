@@ -13,14 +13,15 @@ const CityPicker = (props) => {
 
   return (
     <>
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form data-testid="citySubmit" onSubmit={handleSubmit}>
+      <label >
         City :
         <input
           type="text"
           placeholder="Write your city name"
           value={props.capitalize(value)}
           onChange={handleChange}
+          data-testid="cityField"
         />
       </label>
       <input type="submit" value="Search" data-testid="submit"/>

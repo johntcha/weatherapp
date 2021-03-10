@@ -1,10 +1,10 @@
 import React from "react";
 import CityPicker from "../components/CityPicker";
-import { render, getByTestId, screen, getByText, fireEvent } from "@testing-library/react";
+import { render, getByPlaceholderText, getByTestId, screen, getByText, fireEvent } from "@testing-library/react";
 import userEvent from '@testing-library/user-event';
 
 describe("testing the CityPicker", ()=>{
-	it("should return Paris by default", () => {
+	it("should return Paris by default on title", () => {
   const mockFunction = jest.fn();
   const { getByTestId } = render(
   	<CityPicker 
@@ -16,7 +16,7 @@ describe("testing the CityPicker", ()=>{
   expect(city).toHaveTextContent('Paris');
 });
 
-	it("should trigger the form", () => {
+	it("should trigger the form by click", () => {
 		const mockFunction = jest.fn();
 		const inputValue = "Tokyo";
 		const { getByTestId } = render(
@@ -25,10 +25,21 @@ describe("testing the CityPicker", ()=>{
 	    setCityName={mockFunction}
 	    capitalize={() => 'salut'}
 	  	/>);
-		fireEvent.change(getByTestId('submit'), { target: { value: inputValue } });
   		fireEvent.click(getByTestId('submit'));
-  		// following line returns error
-  		// expect(mockFunction).not.toBeCalled();
   		expect(mockFunction).toBeCalled();
-	})
+	});
+
+  it("should trigger the form by enter", async () =>  {
+    const mockFunction = jest.fn();
+    const inputValue = "Tokyo";
+    const { getByTestId, getByPlaceholderText } = render(
+      <CityPicker 
+      cityName={'Paris'}
+      setCityName={mockFunction}
+      capitalize={() => 'salut'}
+      />);
+      fireEvent.change(getByTestId('cityField'), { target: { value: inputValue } });
+      fireEvent.submit(getByPlaceholderText('Write your city name'));
+      expect(mockFunction).toBeCalled();
+  });
 })
