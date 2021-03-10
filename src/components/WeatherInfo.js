@@ -53,7 +53,7 @@ const WeatherInfo = (props) => {
         setCityName={setCityName}
         capitalize={capitalize}
       />
-      
+
       {weatherData !== null && window.location.pathname === "/" ? (
         <TodaysWeatherContent
           weatherData={weatherData}
