@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
-
 const Switcher = () => {
   return (
     <div className="switcher">
@@ -13,9 +12,7 @@ const Switcher = () => {
             Today
           </Button>
         </NavLink>
-        <NavLink to="/week" 
-        activeClassName="navActive"
-        >
+        <NavLink to="/week" activeClassName="navActive">
           <Button variant="contained" color="primary">
             Week
           </Button>

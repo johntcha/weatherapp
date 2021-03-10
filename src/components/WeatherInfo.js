@@ -8,8 +8,6 @@ import WeeksWeatherContent from "./week/WeeksWeatherContent";
 const WeatherInfo = (props) => {
   const [weatherData, setWeatherData] = useState(null);
   const [cityName, setCityName] = useState("Paris");
-  // const [lat, setLat] = useState('48.8534');
-  // const [lon, setLon] = useState('2.3488');
   const [coord, setCoord] = useState({ lat: "48.8534", lon: "2.3488" });
   const [bgCss, setBgCss] = useState([]);
 
@@ -20,10 +18,8 @@ const WeatherInfo = (props) => {
 
         setCoord({ lat: dataLoc[0].lat, lon: dataLoc[0].lon });
         const weatherData = await getWeather(coord.lat, coord.lon);
-        // setLat(dataLoc[0].lat);
-        // setLon(dataLoc[0].lon);
-        setWeatherData(weatherData);
 
+        setWeatherData(weatherData);
         setBgCss(weatherData.hourly[0].weather[0].main);
         console.log(weatherData);
       } catch (e) {
