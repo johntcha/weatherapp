@@ -54,4 +54,4 @@ The switcher part allow the visitor to navigate between today and this week weat
 The background changes according to the current weather. 
 I just fetched the weather result and implement into a className and added a background image for (almost) each of them.
 
-### Test with Jest and React Testing Library
+### Test with Jest, React Testing Library and Cypress
