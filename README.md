@@ -56,4 +56,4 @@ I just fetched the weather result and implement into a className and added a bac
 
 ### Test with Jest, React Testing Library and Cypress
 
-Test are in the cypress folder
+Test are in the cypress folder 
