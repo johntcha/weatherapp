@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import moment from "moment";
 import { getWeather, getLoc } from "../data/Apicall";
 import CityPicker from "./CityPicker";
-import TodaysWeatherContent from "./today/TodaysWeatherContent";
-import WeeksWeatherContent from "./week/WeeksWeatherContent";
 
 const WeatherInfo = (props) => {
   const [weatherData, setWeatherData] = useState(null);
   const [cityName, setCityName] = useState("Paris");
   const [coord, setCoord] = useState({ lat: "48.8534", lon: "2.3488" });
   const [bgCss, setBgCss] = useState([]);
+
+  const WeeksWeatherContent = React.lazy(() => import('./week/WeeksWeatherContent'));
+  const TodaysWeatherContent = React.lazy(() => import('./today/TodaysWeatherContent'));
 
   useEffect(() => {
     const getData = async () => {
@@ -55,6 +56,7 @@ const WeatherInfo = (props) => {
       />
 
       {weatherData !== null && window.location.pathname === "/" ? (
+        <Suspense fallback={<span>Loading...</span>}>
         <TodaysWeatherContent
           weatherData={weatherData}
           capitalize={capitalize}
@@ -62,8 +64,10 @@ const WeatherInfo = (props) => {
           convertIntoDate={convertIntoDate}
           getDayName={getDayName}
         />
+        </Suspense>
       ) : null}
       {weatherData !== null && window.location.pathname === "/week" ? (
+        <Suspense fallback={<span>Loading...</span>}>
         <WeeksWeatherContent
           weatherData={weatherData}
           capitalize={capitalize}
@@ -71,6 +75,7 @@ const WeatherInfo = (props) => {
           convertIntoDate={convertIntoDate}
           getDayName={getDayName}
         />
+        </Suspense>
       ) : null}
     </div>
   );

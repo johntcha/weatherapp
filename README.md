@@ -57,3 +57,9 @@ I just fetched the weather result and implement into a className and added a bac
 ### Test with Jest, React Testing Library and Cypress
 
 Test are in the cypress folder 
+
+### Optimization
+
+App is small but used Lazy Loading Component for TodaysWeatherContent and WeeksWeatherContent.
+
+main.chunk.js (9.1kB) to (8.8kB)
