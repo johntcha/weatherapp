@@ -2,12 +2,12 @@ import React from "react";
 import moment from "moment";
 
 const TodaysWeatherContent = (props) => {
-  const getList0 = props.weatherData.hourly[0];
-  const rightDateFormat = moment(props.convertIntoDate(getList0.dt)).format(
+  const [getList0, ...array] = props.weatherData.hourly;
+  const rightDateFormat = moment(props.convertIntoDate(getList0.dt),/*"MM/DD/YYYY"*/).format(
     "L"
   );
   const feelsLike = Math.round(getList0.feels_like - 273.15) + "°C";
-  const currentTime = moment(new Date()).format("LT");
+  const currentTime = moment(new Date(),"HH:mm").format("LT");
 
   return (
     <>
@@ -41,7 +41,7 @@ const TodaysWeatherContent = (props) => {
             props.getDayName(props.convertIntoDate(item.dt), "en-US")
           );
           const iconNum = item.weather[0].icon;
-          const hour = moment(props.convertIntoDate(item.dt)).format("LT");
+          const hour = moment(props.convertIntoDate(item.dt), "HH:mm").format("LT");
 
           if (
             window.location.pathname === "/" &&

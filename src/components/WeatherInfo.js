@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import moment from "moment";
 import { getWeather, getLoc } from "../data/Apicall";
 import CityPicker from "./CityPicker";
@@ -45,7 +45,7 @@ const WeatherInfo = (props) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
-  const formatteddate = moment(new Date()).format("ddd MMM DD YYYY");
+  const formatteddate = moment(new Date(),"ddd MMM DD YYYY").format("ddd MMM DD YYYY");
   // console.log(formatteddate);
   return (
     <div className={`weather-content ${bgCss}`}>
