@@ -44,12 +44,12 @@ const TodaysWeatherContent = (props: TodaysWeatherContentProps) => {
 
       <div className="today-weather-card">
         {props.weatherData.hourly.map((item) => {
-          const tempDegree = Math.round(item.temp - 273.15) + "°C";
-          const dayName = props.capitalize(
+          const tempDegree: string = Math.round(item.temp - 273.15) + "°C";
+          const dayName: string  = props.capitalize(
             props.getDayName(props.convertIntoDate(item.dt), "en-US")
           );
-          const iconNum = item.weather[0].icon;
-          const hour = moment(props.convertIntoDate(item.dt), "HH:mm").format("LT");
+          const iconNum: string  = item.weather[0].icon;
+          const hour: string  = moment(props.convertIntoDate(item.dt), "HH:mm").format("LT");
 
           if (
             window.location.pathname === "/" &&
