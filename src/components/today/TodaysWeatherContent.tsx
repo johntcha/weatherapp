@@ -1,13 +1,21 @@
 import React from "react";
 import moment from "moment";
 
-const TodaysWeatherContent = (props) => {
+type TodaysWeatherContentProps = {
+  weatherData
+  capitalize: Function
+  date: string
+  convertIntoDate: Function
+  getDayName: Function
+}
+
+const TodaysWeatherContent = (props: TodaysWeatherContentProps) => {
   const [getList0, ...array] = props.weatherData.hourly;
-  const rightDateFormat = moment(props.convertIntoDate(getList0.dt),/*"MM/DD/YYYY"*/).format(
+  const rightDateFormat: string = moment(props.convertIntoDate(getList0.dt),/*"MM/DD/YYYY"*/).format(
     "L"
   );
-  const feelsLike = Math.round(getList0.feels_like - 273.15) + "°C";
-  const currentTime = moment(new Date(),"HH:mm").format("LT");
+  const feelsLike: string = Math.round(getList0.feels_like - 273.15) + "°C";
+  const currentTime: string = moment(new Date(),"HH:mm").format("LT");
 
   return (
     <>
