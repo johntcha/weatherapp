@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 
 type weatherData = {
-  hourly: Array<any> 
+  hourly: Array<any>
 }
 
 type TodaysWeatherContentProps = {
