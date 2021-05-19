@@ -1,8 +1,12 @@
 import React from "react";
 import moment from "moment";
 
+type weatherData = {
+  hourly: Array<any>
+}
+
 type TodaysWeatherContentProps = {
-  weatherData
+  weatherData: weatherData
   capitalize: Function
   date: string
   convertIntoDate: Function
@@ -10,7 +14,8 @@ type TodaysWeatherContentProps = {
 }
 
 const TodaysWeatherContent = (props: TodaysWeatherContentProps) => {
-  const [getList0, ...array] = props.weatherData.hourly;
+  console.log(props.weatherData)
+  const [getList0, ...array]: Array<any> = props.weatherData.hourly;
   const rightDateFormat: string = moment(props.convertIntoDate(getList0.dt),/*"MM/DD/YYYY"*/).format(
     "L"
   );
