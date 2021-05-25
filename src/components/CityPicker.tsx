@@ -1,12 +1,18 @@
 import React, { useState } from "react";
 
-const CityPicker = (props) => {
-  const [value, setValue] = useState();
+type CityPickerProps = {
+  cityName: string
+  setCityName: Function
+  capitalize: Function
+}
 
-  const handleChange = (event) => {
+const CityPicker = (props: CityPickerProps) => {
+  const [value, setValue] = useState<string>('');
+
+  const handleChange = (event): void => {
     setValue(event.target.value);
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = (event): void => {
     event.preventDefault();
     props.setCityName(value);
   };
