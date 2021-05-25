@@ -1,16 +1,28 @@
 import React from "react";
 import moment from "moment";
 
-const WeeksWeatherContent = (props) => {
+type weatherData = {
+  daily: Array<any> 
+}
+
+type WeeksWeatherContentProps = {
+  weatherData: weatherData
+  capitalize: Function
+  date: string
+  convertIntoDate: Function
+  getDayName: Function
+}
+
+const WeeksWeatherContent = (props: WeeksWeatherContentProps) => {
   return (
     <div className="week-weather-card">
       {props.weatherData.daily.map((item) => {
-        const tempDegree = Math.round(item.temp.day - 273.15) + "°C";
-        const dayName = props.capitalize(
+        const tempDegree: string = Math.round(item.temp.day - 273.15) + "°C";
+        const dayName: string = props.capitalize(
           props.getDayName(props.convertIntoDate(item.dt), "en-US")
         );
-        const iconNum = item.weather[0].icon;
-        const rightDateFormat = moment(props.convertIntoDate(item.dt)).format(
+        const iconNum: string = item.weather[0].icon;
+        const rightDateFormat: string = moment(props.convertIntoDate(item.dt)).format(
           "L"
         );
 
