@@ -3,11 +3,16 @@ import moment from "moment";
 import { getWeather, getLoc } from "../data/Apicall";
 import CityPicker from "./CityPicker";
 
-const WeatherInfo = (props) => {
-  const [weatherData, setWeatherData] = useState(null);
-  const [cityName, setCityName] = useState("Paris");
-  const [coord, setCoord] = useState({ lat: "48.8534", lon: "2.3488" });
-  const [bgCss, setBgCss] = useState([]);
+type coord = {
+  lat: string
+  lon: string
+}
+
+const WeatherInfo = () => {
+  const [weatherData, setWeatherData] = useState<any | null>(null);
+  const [cityName, setCityName] = useState<string>("Paris");
+  const [coord, setCoord] = useState<coord>({ lat: "48.8534", lon: "2.3488" });
+  const [bgCss, setBgCss] = useState<string | never[]>([]);
 
   const WeeksWeatherContent = React.lazy(() => import('./week/WeeksWeatherContent'));
   const TodaysWeatherContent = React.lazy(() => import('./today/TodaysWeatherContent'));
@@ -30,22 +35,22 @@ const WeatherInfo = (props) => {
     getData();
   }, [cityName, JSON.stringify(coord)]);
 
-  const convertIntoDate = (timestamp) => {
+  const convertIntoDate = (timestamp: number): string => {
     let d = new Date(timestamp * 1000);
     let n = d.toString();
     return n;
   };
-  const getDayName = (dateStr, locale) => {
+  const getDayName = (dateStr: string, locale: string): string => {
     const date = new Date(dateStr);
     return date.toLocaleDateString(locale, { weekday: "long" });
   };
 
-  const capitalize = (word) => {
+  const capitalize = (word: string): string => {
     if (typeof word !== "string") return "";
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
-  const formatteddate = moment(new Date(),"ddd MMM DD YYYY").format("ddd MMM DD YYYY");
+  const formatteddate: string = moment(new Date(),"ddd MMM DD YYYY").format("ddd MMM DD YYYY");
   // console.log(formatteddate);
   return (
     <div className={`weather-content ${bgCss}`}>
