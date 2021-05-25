@@ -7,7 +7,7 @@ type weatherData = {
 
 type TodaysWeatherContentProps = {
   weatherData: weatherData
-  capitalize: Function 
+  capitalize: Function
   date: string
   convertIntoDate: Function
   getDayName: Function
