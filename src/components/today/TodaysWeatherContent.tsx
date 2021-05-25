@@ -14,7 +14,6 @@ type TodaysWeatherContentProps = {
 }
 
 const TodaysWeatherContent = (props: TodaysWeatherContentProps) => {
-  console.log(props.weatherData)
   const [getList0, ...array]: Array<any> = props.weatherData.hourly;
   const rightDateFormat: string = moment(props.convertIntoDate(getList0.dt),/*"MM/DD/YYYY"*/).format(
     "L"
