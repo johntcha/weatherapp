@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import { formatHour } from '../../common/Constant'
 
 interface weatherData {
   hourly: Array<any> 
@@ -19,7 +20,7 @@ const TodaysWeatherContent = (props: TodaysWeatherContentProps) => {
     "L"
   );
   const feelsLike: string = Math.round(getList0.feels_like - 273.15) + "°C";
-  const currentTime: string = moment(new Date(),"HH:mm").format("LT");
+  const currentTime: string = moment(new Date(),formatHour).format("LT");
 
   return (
     <>
@@ -53,14 +54,13 @@ const TodaysWeatherContent = (props: TodaysWeatherContentProps) => {
             props.getDayName(props.convertIntoDate(item.dt), "en-US")
           );
           const iconNum: string  = item.weather[0].icon;
-          const hour: string  = moment(props.convertIntoDate(item.dt), "HH:mm").format("LT");
+          const hour: string  = moment(props.convertIntoDate(item.dt), formatHour).format("LT");
 
           if (
             window.location.pathname === "/" &&
             props.convertIntoDate(item.dt).includes(props.date) === true
           )
             return (
-              <>
                 <ul>
                   <li key={item.dt + item}>{dayName}</li>
                   <li>{hour}</li>
@@ -71,7 +71,6 @@ const TodaysWeatherContent = (props: TodaysWeatherContentProps) => {
                     alt={item.weather[0].description}
                   />
                 </ul>
-              </>
             );
         })}
       </div>

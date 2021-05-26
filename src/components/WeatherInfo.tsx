@@ -2,6 +2,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import moment from "moment";
 import { getWeather, getLoc } from "../data/Apicall";
 import CityPicker from "./CityPicker";
+import { formatDate } from '../common/Constant'
 
 interface coord {
   lat: string
@@ -50,7 +51,7 @@ const WeatherInfo = () => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
-  const formatteddate: string = moment(new Date(),"ddd MMM DD YYYY").format("ddd MMM DD YYYY");
+  const formatteddate: string = moment(new Date(),formatDate).format(formatDate);
   // console.log(formatteddate);
   return (
     <div className={`weather-content ${bgCss}`}>

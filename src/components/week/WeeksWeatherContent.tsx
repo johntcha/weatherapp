@@ -27,7 +27,6 @@ const WeeksWeatherContent = (props: WeeksWeatherContentProps) => {
         );
 
         return (
-          <>
             <ul>
               <li key={item.dt}>{dayName}</li>
               <li>{rightDateFormat}</li>
@@ -38,7 +37,6 @@ const WeeksWeatherContent = (props: WeeksWeatherContentProps) => {
                 alt={item.weather[0].description}
               />
             </ul>
-          </>
         );
       })}
     </div>
