@@ -1,11 +1,11 @@
 import React from "react";
 import moment from "moment";
 
-type weatherData = {
+interface weatherData {
   daily: Array<any> 
 }
 
-type WeeksWeatherContentProps = {
+interface WeeksWeatherContentProps {
   weatherData: weatherData
   capitalize: Function
   date: string

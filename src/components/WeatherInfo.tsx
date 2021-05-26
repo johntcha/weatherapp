@@ -3,7 +3,7 @@ import moment from "moment";
 import { getWeather, getLoc } from "../data/Apicall";
 import CityPicker from "./CityPicker";
 
-type coord = {
+interface coord {
   lat: string
   lon: string
 }
