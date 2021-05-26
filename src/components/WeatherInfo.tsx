@@ -12,7 +12,7 @@ const WeatherInfo = () => {
   const [weatherData, setWeatherData] = useState<any | null>(null);
   const [cityName, setCityName] = useState<string>("Paris");
   const [coord, setCoord] = useState<coord>({ lat: "48.8534", lon: "2.3488" });
-  const [bgCss, setBgCss] = useState<string | never[]>([]);
+  const [bgCss, setBgCss] = useState<string>("");
 
   const WeeksWeatherContent = React.lazy(() => import('./week/WeeksWeatherContent'));
   const TodaysWeatherContent = React.lazy(() => import('./today/TodaysWeatherContent'));
@@ -20,10 +20,10 @@ const WeatherInfo = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const dataLoc = await getLoc(cityName);
+        const dataLoc: any = await getLoc(cityName);
 
         setCoord({ lat: dataLoc[0].lat, lon: dataLoc[0].lon });
-        const weatherData = await getWeather(coord.lat, coord.lon);
+        const weatherData: any = await getWeather(coord.lat, coord.lon);
 
         setWeatherData(weatherData);
         setBgCss(weatherData.hourly[0].weather[0].main);
